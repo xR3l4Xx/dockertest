@@ -2,13 +2,9 @@ version: '3.8'
 services:
   php-apache-environment:
     container_name: php-apache
-    build:
-      context: ./php
-      dockerfile: Dockerfile
+    build: ./php
     depends_on:
       - db
-    volumes:
-      - ./php/src:/var/www/html/
     ports:
       - 8000:80
   db:
@@ -19,6 +15,8 @@ services:
       LANG: C.UTF-8
       MYSQL_ROOT_PASSWORD: rootpw
       MYSQL_DATABASE: dockertestdb
+      MYSQL_USER: ddavid
+      MYSQL_PASSWORD: davidpw
     ports:
       - 9906:3306
   phpmyadmin:
